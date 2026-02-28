@@ -5,6 +5,16 @@
         <ID>CUSA02962</ID>
         <ID>CUSA03450</ID>
     </TitleID>
+     <Metadata Title="Fallout 4"
+              Name="60 FPS Unlock"
+              Author="Jao"
+              PatchVer="1.0"
+              AppVer="01.36"
+              AppElf="eboot.bin">
+        <PatchList>
+            <Line Type="bytes" Address="0x01430698" Value="31f690"/>
+        </PatchList>
+    </Metadata>
     <Metadata Title="Fallout 4"
               Name="60 FPS Unlock"
               Author="illusion"
