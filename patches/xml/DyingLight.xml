@@ -10,4 +10,15 @@
         <Line Value="31f690" Address="0x00481719" Type="bytes"/>
     </PatchList>
   </Metadata>
+  <Metadata Title="Dying Light"
+              Name="No Vsync"
+              Author="phrost1338"
+              Note="Let the intro movie play for a bit or the system will freeze up before the main menu."
+              PatchVer="1.0"
+              AppVer="01.48"
+              AppElf="eboot.bin">
+    <PatchList>
+        <Line Type="bytes" Address="0x47F196" Value="41b80200000090"/>
+    </PatchList>
+  </Metadata>
 </Patch>
