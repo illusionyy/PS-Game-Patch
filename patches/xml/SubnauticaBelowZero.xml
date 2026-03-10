@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+  <TitleID>
+    <ID>CUSA18065</ID>
+    <ID>CUSA18068</ID>
+  </TitleID>
+  <Metadata Title="Subnautica Below Zero"
+              Name="60 FPS"
+              Author="phrost1338"
+              PatchVer="1.0"
+              AppVer="mask"
+              AppElf="eboot.bin">
+    <PatchList>
+        <Line Type="mask" Address="31 f6 83 fb 01 40 0f 95 c6" Value="31f69090" Offset= "+5"/>
+    </PatchList>
+  </Metadata>
+</Patch>
