@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+  <TitleID>
+    <ID>CUSA06267</ID>
+    <ID>CUSA06244</ID>
+  </TitleID>
+  <Metadata Title="The Escapists 2"
+              Name="60 FPS"
+              Author="phrost1338"
+              PatchVer="1.0"
+              AppVer="mask"
+              AppElf="eboot.bin">
+    <PatchList>
+        <Line Type="mask" Address="41 83 fc 01 0f 97 c0 0f b6 f0" Value="31f690" Offset= "+7"/>
+    </PatchList>
+  </Metadata>
+</Patch>
