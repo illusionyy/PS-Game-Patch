@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+  <TitleID>
+    <ID>CUSA08010</ID>
+    <ID>CUSA04301</ID>
+  </TitleID>
+  <Metadata Title="Dreams"
+              Name="60 FPS"
+              Author="phrost1338"
+              PatchVer="1.0"
+              AppVer="mask"
+              AppElf="eboot.bin">
+    <PatchList>
+        <Line Type="mask" Address="8b 3d ? ? ? ? 89 de e8 ? ? ? ? 89 1d ? ? ? ?" Value="31f6" Offset= "+6"/>
+    </PatchList>
+  </Metadata>
+   <Metadata Title="Dreams"
+              Name="No vsync"
+              Author="phrost1338"
+              PatchVer="1.0"
+              AppVer="mask"
+              AppElf="eboot.bin">
+    <PatchList>
+        <Line Type="mask" Address="c7 05 ? ? ? ? 29 00 00 00 48 c7 05 ? ? ? ? 02 00 00 00 c7 05 ? ? ? ? 01 00 00 00" Value="00" Offset= "+27"/>
+    </PatchList>
+  </Metadata>
+</Patch>
