@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+  <TitleID>
+    <ID>CUSA16075</ID>
+    <ID>CUSA16164</ID>
+  </TitleID>
+  <Metadata Title="Sniper Elite 5"
+              Name="60 FPS"
+              Author="phrost1338"
+              PatchVer="1.0"
+              AppVer="mask"
+              AppElf="eboot.bin">
+    <PatchList>
+        <Line Type="mask" Address="0f 4f c3 8d 48 ff 83 f8 03 0f 4c f1" Value="31f690" Offset= "+9"/>
+    </PatchList>
+  </Metadata>
+    <Metadata Title="Sniper Elite 5"
+              Name="720p Patch"
+              Author="illusony"
+              PatchVer="1.0"
+              AppVer="mask"
+              AppElf="eboot.bin">
+    <PatchList>
+        <Line Type="mask" Address="74 ? bf 00 0a 00 00 be a0 05 00 00" Value="9090bf00050000bed0020000"/>
+    </PatchList>
+  </Metadata>
+</Patch>
