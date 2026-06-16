@@ -105,6 +105,7 @@ jobs:
           mkdir out
           mv patch1 out/patches
           cd out
+          cp -r patches/xml patches/xml_orbis # new patch folder
           zip -r ${{ github.workspace }}/patch1.zip patches/* patches/build.txt patches/misc/patch_ver.txt
           mkdir ../patch1_artifact 
           mv patches ../patch1_artifact/patches
