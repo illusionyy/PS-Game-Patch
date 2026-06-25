@@ -145,20 +145,28 @@ jobs:
           echo "</details>" >> $hash_md
           gh release create "${{ env.current_time }}" "${{ github.workspace }}/patch1.zip" --target "${{ GITHUB.SHA }}" -t "${{ env.current_date }}" -F $hash_md
 
+      - name: Check if website workflow should run
+        env:
+          WORKFLOW_RUNNER: ${{ secrets.WORKFLOW_RUNNER }}
+          REF_NAME: ${{ github.ref_name }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [ "$REF_NAME" = "main" ] \
+            && [ "$EVENT_NAME" = "push" ] \
+            && [ -n "$WORKFLOW_RUNNER" ]; then
+            echo "RUN_WEBSITE_WORKFLOW=true" >> "$GITHUB_ENV"
+          else
+            echo "RUN_WEBSITE_WORKFLOW=false" >> "$GITHUB_ENV"
+          fi
+
       - name: Checkout website
-        if: |
-          github.ref_name == 'main' &&
-          github.event_name == 'push' &&
-          secrets.WORKFLOW_RUNNER
+        if: env.RUN_WEBSITE_WORKFLOW == 'true'
         uses: actions/checkout@main
         with:
           repository: illusionyy/legacy-website
 
       - name: Run Website Workflow dispatch
-        if: |
-          github.ref_name == 'main' &&
-          github.event_name == 'push' &&
-          secrets.WORKFLOW_RUNNER
+        if: env.RUN_WEBSITE_WORKFLOW == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_RUNNER }}
         run: gh workflow run jekyll.yml
