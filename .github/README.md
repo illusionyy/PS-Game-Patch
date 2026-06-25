@@ -135,8 +135,7 @@ Set base address to `0x00400000` when importing binaries for consistency with PS
         <ID>EXAMPLE02</ID>
     </TitleID>
     <!-- `AppVer="mask"` can be used for pattern scan patches --> 
-    <!-- `ImageBase` is only valid for PS5 patches. -->
-    <!-- `ImageBase` can be `0x0000000000000000`, the plugin will use relative offset -->
+    <!-- `ImageBase` is optional, the parser will use relative offset -->
     <Metadata Title="Example Game Title"
               Name="Example Name"
               Note="Example Note"
