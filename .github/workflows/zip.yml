@@ -148,7 +148,8 @@ jobs:
       - name: Checkout website
         if: |
           github.ref_name == 'main' &&
-          github.event_name == 'push'
+          github.event_name == 'push' &&
+          secrets.WORKFLOW_RUNNER
         uses: actions/checkout@main
         with:
           repository: illusionyy/legacy-website
@@ -156,7 +157,8 @@ jobs:
       - name: Run Website Workflow dispatch
         if: |
           github.ref_name == 'main' &&
-          github.event_name == 'push'
+          github.event_name == 'push' &&
+          secrets.WORKFLOW_RUNNER
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_RUNNER }}
         run: gh workflow run jekyll.yml
