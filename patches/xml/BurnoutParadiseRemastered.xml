@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<Patch>
+    <TitleID>
+        <ID>CUSA10851</ID>
+        <ID>CUSA10866</ID>		
+    </TitleID>
+    <Metadata Title="Burnout Paradise Remastered" 
+              Name="Skip Intro" 
+              Author="DanielSvoboda" 
+              PatchVer="1.0" 
+              AppVer="01.03" 
+              AppElf="eboot.bin"
+        <PatchList>
+<Line Type="bytes" Address="0x815DCA" Value="909090909090"/>
+        </PatchList>
+    </Metadata>
+</Patch>
