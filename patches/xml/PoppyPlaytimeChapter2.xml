@@ -11,6 +11,7 @@
               AppElf="eboot.bin">
         <PatchList>
             <Line Type="bytes" Address="0x05080518" Value="31F690"/>
+			<Line Type="bytes" Address="0x05080672" Value="31F690"/>
         </PatchList>
     </Metadata>
 </Patch>
