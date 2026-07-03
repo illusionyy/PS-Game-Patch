@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<Patch>
+    <TitleID>
+        <ID>CUSA47693</ID>
+    </TitleID>
+    <Metadata Title="Poppy Playtime: Chapter 2"
+              Name="60 FPS"
+              Author="DanielSvoboda"
+              PatchVer="1.0"
+              AppVer="01.01"
+              AppElf="eboot.bin">
+        <PatchList>
+            <Line Type="bytes" Address="0x05080518" Value="31F690"/>
+        </PatchList>
+    </Metadata>
+</Patch>
