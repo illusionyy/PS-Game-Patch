@@ -3,6 +3,7 @@
     <TitleID>
         <ID>CUSA03365</ID>
         <ID>CUSA03388</ID>
+        <ID>CUSA07339</ID>
     </TitleID>
     <Metadata Title="Dark Souls III"
               Name="60 FPS Unlock"
@@ -49,6 +50,17 @@
               AppElf="eboot.bin">
         <PatchList>
             <Line Type="bytes" Address="0x011bc036" Value="b201"/>
+        </PatchList>
+    </Metadata>
+    <Metadata Title="Dark Souls III"
+              Name="Top Menu Debug"
+              Note="Hidden Pause Menu, on the right side"
+              Author="Whitehawkx, DanielSvoboda"
+              PatchVer="1.0"
+              AppVer="01.15"
+              AppElf="eboot.bin">
+        <PatchList>
+            <Line Type="bytes" Address="0x1392943" Value="b201"/>
         </PatchList>
     </Metadata>
     <Metadata Title="Dark Souls III"
