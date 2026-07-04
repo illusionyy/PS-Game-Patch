@@ -21,4 +21,15 @@
             <Line Type="bytes" Address="0x01a10c7a" Value="c3"/>
         </PatchList>
     </Metadata>
+    <Metadata Title="Stray"
+              Name="60 FPS"
+			  Note="It is the same patch created by illusion for version 01.03, but for version 1.04 and simplified."
+              Author="DanielSvoboda, illusion"
+              PatchVer="1.0"
+              AppVer="01.04"
+              AppElf="eboot.bin">
+        <PatchList>
+            <Line Type="bytes" Address="0x01960E30" Value="B8010000004883C4085B5DC3"/>
+        </PatchList>
+    </Metadata>
 </Patch>
