@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+    <TitleID>
+        <ID>CUSA26615</ID>
+    </TitleID>
+    <Metadata Title="Grand Theft Auto Vice City The Definitive Edition"
+              Name="60 FPS"
+              Author="DanielSvoboda"
+              PatchVer="1.00"
+              AppVer="01.07"
+              AppElf="eboot.bin">
+        <PatchList> 												   
+            <Line Type="bytes" Address="0xe7fc88" Value="9090909090"/>
+        </PatchList>
+    </Metadata>
+</Patch>
