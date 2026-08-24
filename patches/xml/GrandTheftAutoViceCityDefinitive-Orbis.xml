@@ -2,6 +2,9 @@
 <Patch>
     <TitleID>
         <ID>CUSA26615</ID>
+        <ID>CUSA26616</ID>
+        <ID>CUSA26617</ID>
+        <ID>CUSA40382</ID>		
     </TitleID>
     <Metadata Title="Grand Theft Auto Vice City The Definitive Edition"
               Name="60 FPS"
