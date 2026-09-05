@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+    <TitleID>
+        <ID>CUSA01836</ID>
+    </TitleID>
+    <Metadata Title="Deus Ex Mankind Divided"
+              Name="60 fps"
+              Author="Joey85"
+              PatchVer="1.0"
+              AppVer="01.14"
+              AppElf="eboot.bin">
+        <PatchList>
+            <Line Type="bytes" Address="0x00e4760f" Value="31F6"/>
+        </PatchList>
+    </Metadata>
+</Patch>
