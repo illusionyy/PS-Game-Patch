@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+    <TitleID>
+        <ID>CUSA00938</ID>
+    </TitleID>
+    <Metadata Title="Homefront 2"
+              Name="60 fps"
+              Author="Joey85"
+              PatchVer="1.0"
+              AppVer="01.12"
+              AppElf="eboot.bin">
+        <PatchList>
+            <Line Type="bytes" Address="0x01d52dd4" Value="be00000000"/>
+            <Line Type="bytes" Address="0x01d52dd9" Value="90"/>
+			<Line Type="bytes" Address="0x01d52dda" Value="90"/>
+        </PatchList>
+    </Metadata>
+</Patch>
