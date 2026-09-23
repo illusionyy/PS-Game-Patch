@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <TitleID><ID>CUSA37522</ID></TitleID>
+  <Metadata Title="Persona 3 Reload" Name="60 FPS frame pacing (experimental)" Note="CUSA37522 v1.08 only not sure for other versions. Doubles the positive t.MaxFPS read and forces the PS4 renderer's sync-interval reads to one refresh." Author="Anser Yu https://github.com/anseryuer" PatchVer="0.4" AppVer="01.08" AppElf="eboot.bin">
+    <PatchList>
+      <Line Type="bytes" Address="0x03F63001" Value="c5fa10048bc5fa58c0e985f9ffff" />
+      <Line Type="bytes" Address="0x03F6298F" Value="e96d060000" />
+      <Line Type="bytes" Address="0x02116315" Value="31c0ffc090" />
+      <Line Type="bytes" Address="0x02116730" Value="b801000000e903000000909090" />
+      <Line Type="bytes" Address="0x02123BC4" Value="31c9ffc1" />
+    </PatchList>
+  </Metadata>
+</Patch>
