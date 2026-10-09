@@ -21,6 +21,19 @@
         </PatchList>
     </Metadata>
     <Metadata Title="Red Dead Redemption 2"
+              Name="Unlock FPS 120fps"
+			  Note="Also activate VideoOut for 120Hz in the patch manager settings"
+              Author="Joey85, Jao"
+              PatchVer="1.0"
+              AppVer="01.32"
+              AppElf="eboot.bin">
+        <PatchList>
+			<Line Type="bytes" Address="0x05853029" Value="31f690"/>
+            <Line Type="bytes" Address="0x057ebd10" Value="41b900000000"/>
+			<Line Type="bytes" Address="0x05853102" Value="41b900000000"/>
+        </PatchList>
+    </Metadata>
+    <Metadata Title="Red Dead Redemption 2"
               Name="Skip Intro"
               Author="illusion"
               PatchVer="1.0"
