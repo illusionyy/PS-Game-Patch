@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+    <TitleID>
+        <ID>CUSA29007</ID>
+    </TitleID>
+    <Metadata Title="Far Cry 3 Blood Dragon Classic Edition"
+              Name="60fps patch"
+              Author="mav2010"
+              PatchVer="1.0"
+              AppVer="01.00"
+              AppElf="eboot.bin">
+        <PatchList>
+            <Line Type="bytes" Address="0x01dfa4fe" Value="be00000000"/>
+        </PatchList>
+    </Metadata>
+</Patch>
