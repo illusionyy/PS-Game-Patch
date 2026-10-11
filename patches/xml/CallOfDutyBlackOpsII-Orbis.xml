@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <TitleID><ID>CUSA57548</ID></TitleID>
+  <Metadata Title="Call of Duty Black Ops II"
+            Name="monkeys bo1/bo2 fix for dlc"
+            Note="For the verified CUSA57548 v1.10 codzm.elf with map assets installed."
+            Author="monkey"
+            PatchVer="1.1"
+            AppVer="01.10"
+            AppElf="codzm.elf">
+    <PatchList>
+      <Line Type="bytes" Address="0x007173f0" Value="b801000000c3"/>
+    </PatchList>
+  </Metadata>
+</Patch>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <TitleID><ID>CUSA57547</ID></TitleID>
+  <Metadata Title="Call of Duty Black Ops"
+            Name="monkeys bo1/bo2 fix for dlc"
+            Note="For the verified CUSA57547 v1.08 eboot.bin with installed map assets."
+            Author="monkey"
+            PatchVer="1.1"
+            AppVer="01.08"
+            AppElf="eboot.bin">
+    <PatchList>
+      <Line Type="bytes" Address="0x006aa7e4" Value="909090909090"/>
+    </PatchList>
+  </Metadata>
+</Patch>
