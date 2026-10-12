@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <TitleID>
+    <ID>PPSA26344</ID>
+  </TitleID>
+  <Metadata Title="Ghost of Yotei" Name="Enable Cutscene Skip (by ANHAR)" Author="ANHAR" AppVer="01.008.000" AppElf="eboot.bin" ImageBase="0x0" PatchVer="1.0" Note="Tested working by ANHAR with PPSA26344 v01.008.000. Enables existing cutscene skip permission checks while retaining cinematic-state, handle and authored-scene checks. Use the normal in-game skip control. No speed boost or custom hotkeys. Restart game after enabling. Some scenes may remain unskippable. Exact analyzed eboot SHA256: db0a7b9d28611bcb918554166d873fdc560b82f6582be70e731a80bbb3d4037e.">
+    <PatchList>
+      <Line Type="bytes" Address="0xe1e880" Value="9090" />
+      <Line Type="bytes" Address="0xe1e8bf" Value="ebc1" />
+      <Line Type="bytes" Address="0xe1e950" Value="9090" />
+      <Line Type="bytes" Address="0xe1e98c" Value="ebc4" />
+      <Line Type="bytes" Address="0x10e36c5" Value="9090" />
+      <Line Type="bytes" Address="0x10e37b5" Value="9090" />
+      <Line Type="bytes" Address="0x11f43c9" Value="b8010000009090" />
+      <Line Type="bytes" Address="0x11f4403" Value="b00190" />
+    </PatchList>
+  </Metadata>
+</Patch>
