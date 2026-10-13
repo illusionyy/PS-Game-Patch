@@ -1,0 +1,17 @@
+<?xml version="1.000.004" encoding="utf-8"?>
+<Patch>
+  <TitleID>
+    <ID>PPSA34015</ID>
+  </TitleID>
+  <Metadata Title="EA SPORTS FC 27"
+            Name="SP INF - Career Mode"
+            Note="Simple Infinite SP hack for Career Mode."
+            Author="Leiva"
+            PatchVer="1.000.004"
+            AppVer="mask"
+            AppElf="eboot.bin">
+    <PatchList>
+      <Line Type="mask" Address="c5 f9 d6 87 10 08 00 00" Value="9090909090909090" Offset="+0"/>
+    </PatchList>
+  </Metadata>
+</Patch>
