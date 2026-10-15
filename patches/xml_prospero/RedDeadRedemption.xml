@@ -1,0 +1,250 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Patch>
+    <TitleID>
+        <ID>PPSA30523</ID>
+    </TitleID>
+    <Metadata Title="Red Dead Redemption"
+              Name="Custom Graphics Preset optimised for 4K120"
+              Author="cainan__c"
+              PatchVer="1.1"
+              AppVer="mask"
+              AppElf="eboot.bin"
+              Note="Applies custom graphics settings at startup. Use with the 2160p patch and 120 Hz output option on ps-patch-system."
+              isEnabled="false">
+        <PatchList>
+            <!-- VA 0x00133A38; file 0x00137A38. Set x4 anisotropic filtering and AA/upscaling Off before startup validation completes. -->
+            <Line Type="mask"
+                  Address="0F B6 05 49 29 24 02 83 F8 10 77 0A B9 10 01 01 00 0F A3 C1 72 07 C6 05 33 29 24 02 04"
+                  Value="C6054929240204C7056B29240200000000909090909090909090909090" />
+            <!-- VA 0x00133ABA; file 0x00137ABA. Set the custom shadow/LOD configuration; preserve HDR validation constants. -->
+            <Line Type="mask"
+                  Address="C5 F8 10 0D 1E BD 33 01 8B 15 C8 28 24 02 80 FA 03 0F 43 D1 88 15 BC 28 24 02 C5 F0 5F 0D B8 28 24 02 C5 E8 5D C9 C5 FA 10 15 B8 37 33 01 C5 F8 11 0D A4 28 24 02 C5 F0 57 C9 C5 F2 5F 0D A8 28 24 02 C5 EA 5D C9 C5 FB 10 15 28 D3 33 01 C5 FA 11 0D 94 28 24 02"
+                  Value="66C705CD2824020101C605C828240200C705C02824020000C842C705BA2824020000803FC705B42824020000803FC705AE28240200000000C705A828240200000000C5FB10152CD33301909090909090909090909090" />
+        </PatchList>
+    </Metadata>    
+    <Metadata Title="Red Dead Redemption"
+              Name="2160p Internal Resolution (100.00%)"
+              Author="cainan__c"
+              PatchVer="3.0"
+              AppVer="mask"
+              AppElf="eboot.bin"
+              Note="Sets 3D Render Resolution to 3840x2160, Disables Dynamic Resolution Scaling"
+              isEnabled="false">
+        <PatchList>
+            <!-- VA 0x00F5660D; file 0x00F5A60D. Initialize the gameplay internal render scale. -->
+            <Line Type="mask" Address="C7 83 60 05 00 00 00 00 80 3F C5 FB 11 83 6C 05 00 00" Value="C783600500000000803FC5FB11836C050000" />
+            <!-- VA 0x00EF5188; file 0x00EF9188. Keep dynamic resolution disabled when applying FSR settings. -->
+            <Line Type="mask" Address="0F 94 81 80 05 00 00" Value="C6818005000000" />
+            <!-- VA 0x00EF51FE; file 0x00EF91FE. Keep dynamic resolution disabled when applying other scaling settings. -->
+            <Line Type="mask" Address="48 8D 05 A3 E7 7E 01 48 8B 00 88 88 80 05 00 00" Value="488B05A3E77E01C68080050000009090" />
+            <!-- VA 0x00F57B72; file 0x00F5BB72. Disable the command-line force-DRS override. -->
+            <Line Type="mask" Address="C6 83 80 05 00 00 01" Value="C6838005000000" />
+            <!-- VA 0x00F632AC; file 0x00F672AC. Retain the selected scale in the non-DRS fallback path. -->
+            <Line Type="mask" Address="C7 83 60 05 00 00 00 00 80 3F 88 83 81 05 00 00" Value="C783600500000000803F888381050000" />
+            <!-- VA 0x00F632C4; file 0x00F672C4. Compare the previous scale with the selected scale; avoid repeated resizing. -->
+            <Line Type="mask" Address="C5 F8 2E 05 2C 3F 50 00 75 06 0F 8B C4 03 00 00" Value="C5F82E836005000075060F8BC4030000" />
+            <!-- VA 0x00F6336B; file 0x00F6736B. Prevent the upscaler preset from replacing the selected scale on unchanged frames. -->
+            <Line Type="mask" Address="C5 FA 5E 82 A0 03 00 00 C5 FA 11 83 60 05 00 00" Value="C5FA5E82A00300009090909090909090" />
+            <!-- VA 0x00F633D2; file 0x00F673D2. Prevent the upscaler preset from replacing the selected scale before target resizing. -->
+            <Line Type="mask" Address="C5 FA 5E 80 A0 03 00 00 48 8D 05 37 9A C0 00 C5 FA 11 83 60 05 00 00" Value="C5FA5E80A0030000488D05379AC0009090909090909090" />
+            <!-- VA 0x00F62FAF; file 0x00F66FAF. Allow mode 6 to update internal dimensions instead of returning before resizing. -->
+            <Line Type="mask" Address="83 F8 06 0F 84 E0 06 00 00" Value="83F806909090909090" />
+            <!-- VA 0x00F57686; file 0x00F5B686. Always select the fixed internal-size calculation, bypassing the render-height override. -->
+            <Line Type="mask" Address="20 C1 80 F9 01 75 24 44 89 E0 C5 FA 10 4D C4" Value="20C180F901EB244489E0C5FA104DC4" />
+            <!-- VA 0x00F576B1; file 0x00F5B6B1. Write exact internal width/height and matching scale before all scene target resize calls. -->
+            <Line Type="mask" Address="C5 FA 10 55 C4 C5 FA 10 4D C0 C5 F2 59 C2 C5 F2 59 4D C8 C4 E3 79 0A C0 0A C4 E3 71 0A C9 0A C5 7A 2C E1 C5 F8 28 CA C5 7A 2C E8" Value="C745C00000803F41C787600500000000803F41BD000F000041BC70080000C5FA104DC49090909090909090" />
+            <!-- VA 0x00F5794F; file 0x00F5B94F. Initialize exact scene dimensions while preserving the following allocation size. -->
+            <Line Type="mask" Address="C5 F9 6E 85 64 FF FF FF C4 E2 79 18 8B 60 05 00 00 BF 00 1C 00 00 C4 E3 79 22 85 60 FF FF FF 01 C5 F8 5B C0 C5 F0 59 C0 C5 FA 5B C0 C5 F8 13 83 64 05 00 00" Value="C783600500000000803FC78364050000000F0000C7836805000070080000BF001C00009090909090909090909090909090909090" />
+        </PatchList>
+    </Metadata>
+    <Metadata Title="Red Dead Redemption"
+              Name="1800p Internal Resolution (83.33%)"
+              Author="cainan__c"
+              PatchVer="3.0"
+              AppVer="mask"
+              AppElf="eboot.bin"
+              Note="Sets 3D Render Resolution to 3200x1800, Disables Dynamic Resolution Scaling"
+              isEnabled="false">
+        <PatchList>
+            <!-- VA 0x00F5660D; file 0x00F5A60D. Initialize the gameplay internal render scale. -->
+            <Line Type="mask" Address="C7 83 60 05 00 00 00 00 80 3F C5 FB 11 83 6C 05 00 00" Value="C783600500005555553FC5FB11836C050000" />
+            <!-- VA 0x00EF5188; file 0x00EF9188. Keep dynamic resolution disabled when applying FSR settings. -->
+            <Line Type="mask" Address="0F 94 81 80 05 00 00" Value="C6818005000000" />
+            <!-- VA 0x00EF51FE; file 0x00EF91FE. Keep dynamic resolution disabled when applying other scaling settings. -->
+            <Line Type="mask" Address="48 8D 05 A3 E7 7E 01 48 8B 00 88 88 80 05 00 00" Value="488B05A3E77E01C68080050000009090" />
+            <!-- VA 0x00F57B72; file 0x00F5BB72. Disable the command-line force-DRS override. -->
+            <Line Type="mask" Address="C6 83 80 05 00 00 01" Value="C6838005000000" />
+            <!-- VA 0x00F632AC; file 0x00F672AC. Retain the selected scale in the non-DRS fallback path. -->
+            <Line Type="mask" Address="C7 83 60 05 00 00 00 00 80 3F 88 83 81 05 00 00" Value="C783600500005555553F888381050000" />
+            <!-- VA 0x00F632C4; file 0x00F672C4. Compare the previous scale with the selected scale; avoid repeated resizing. -->
+            <Line Type="mask" Address="C5 F8 2E 05 2C 3F 50 00 75 06 0F 8B C4 03 00 00" Value="C5F82E836005000075060F8BC4030000" />
+            <!-- VA 0x00F6336B; file 0x00F6736B. Prevent the upscaler preset from replacing the selected scale on unchanged frames. -->
+            <Line Type="mask" Address="C5 FA 5E 82 A0 03 00 00 C5 FA 11 83 60 05 00 00" Value="C5FA5E82A00300009090909090909090" />
+            <!-- VA 0x00F633D2; file 0x00F673D2. Prevent the upscaler preset from replacing the selected scale before target resizing. -->
+            <Line Type="mask" Address="C5 FA 5E 80 A0 03 00 00 48 8D 05 37 9A C0 00 C5 FA 11 83 60 05 00 00" Value="C5FA5E80A0030000488D05379AC0009090909090909090" />
+            <!-- VA 0x00F62FAF; file 0x00F66FAF. Allow mode 6 to update internal dimensions instead of returning before resizing. -->
+            <Line Type="mask" Address="83 F8 06 0F 84 E0 06 00 00" Value="83F806909090909090" />
+            <!-- VA 0x00F57686; file 0x00F5B686. Always select the fixed internal-size calculation, bypassing the render-height override. -->
+            <Line Type="mask" Address="20 C1 80 F9 01 75 24 44 89 E0 C5 FA 10 4D C4" Value="20C180F901EB244489E0C5FA104DC4" />
+            <!-- VA 0x00F576B1; file 0x00F5B6B1. Write exact internal width/height and matching scale before all scene target resize calls. -->
+            <Line Type="mask" Address="C5 FA 10 55 C4 C5 FA 10 4D C0 C5 F2 59 C2 C5 F2 59 4D C8 C4 E3 79 0A C0 0A C4 E3 71 0A C9 0A C5 7A 2C E1 C5 F8 28 CA C5 7A 2C E8" Value="C745C05555553F41C787600500005555553F41BD800C000041BC08070000C5FA104DC49090909090909090" />
+            <!-- VA 0x00F5794F; file 0x00F5B94F. Initialize exact scene dimensions while preserving the following allocation size. -->
+            <Line Type="mask" Address="C5 F9 6E 85 64 FF FF FF C4 E2 79 18 8B 60 05 00 00 BF 00 1C 00 00 C4 E3 79 22 85 60 FF FF FF 01 C5 F8 5B C0 C5 F0 59 C0 C5 FA 5B C0 C5 F8 13 83 64 05 00 00" Value="C783600500005555553FC78364050000800C0000C7836805000008070000BF001C00009090909090909090909090909090909090" />
+        </PatchList>
+    </Metadata>
+    <Metadata Title="Red Dead Redemption"
+              Name="1440p Internal Resolution (66.67%)"
+              Author="cainan__c"
+              PatchVer="3.0"
+              AppVer="mask"
+              AppElf="eboot.bin"
+              Note="Sets 3D Render Resolution to 2560x1440, Disables Dynamic Resolution Scaling"
+              isEnabled="false">
+        <PatchList>
+            <!-- VA 0x00F5660D; file 0x00F5A60D. Initialize the gameplay internal render scale. -->
+            <Line Type="mask" Address="C7 83 60 05 00 00 00 00 80 3F C5 FB 11 83 6C 05 00 00" Value="C78360050000ABAA2A3FC5FB11836C050000" />
+            <!-- VA 0x00EF5188; file 0x00EF9188. Keep dynamic resolution disabled when applying FSR settings. -->
+            <Line Type="mask" Address="0F 94 81 80 05 00 00" Value="C6818005000000" />
+            <!-- VA 0x00EF51FE; file 0x00EF91FE. Keep dynamic resolution disabled when applying other scaling settings. -->
+            <Line Type="mask" Address="48 8D 05 A3 E7 7E 01 48 8B 00 88 88 80 05 00 00" Value="488B05A3E77E01C68080050000009090" />
+            <!-- VA 0x00F57B72; file 0x00F5BB72. Disable the command-line force-DRS override. -->
+            <Line Type="mask" Address="C6 83 80 05 00 00 01" Value="C6838005000000" />
+            <!-- VA 0x00F632AC; file 0x00F672AC. Retain the selected scale in the non-DRS fallback path. -->
+            <Line Type="mask" Address="C7 83 60 05 00 00 00 00 80 3F 88 83 81 05 00 00" Value="C78360050000ABAA2A3F888381050000" />
+            <!-- VA 0x00F632C4; file 0x00F672C4. Compare the previous scale with the selected scale; avoid repeated resizing. -->
+            <Line Type="mask" Address="C5 F8 2E 05 2C 3F 50 00 75 06 0F 8B C4 03 00 00" Value="C5F82E836005000075060F8BC4030000" />
+            <!-- VA 0x00F6336B; file 0x00F6736B. Prevent the upscaler preset from replacing the selected scale on unchanged frames. -->
+            <Line Type="mask" Address="C5 FA 5E 82 A0 03 00 00 C5 FA 11 83 60 05 00 00" Value="C5FA5E82A00300009090909090909090" />
+            <!-- VA 0x00F633D2; file 0x00F673D2. Prevent the upscaler preset from replacing the selected scale before target resizing. -->
+            <Line Type="mask" Address="C5 FA 5E 80 A0 03 00 00 48 8D 05 37 9A C0 00 C5 FA 11 83 60 05 00 00" Value="C5FA5E80A0030000488D05379AC0009090909090909090" />
+            <!-- VA 0x00F62FAF; file 0x00F66FAF. Allow mode 6 to update internal dimensions instead of returning before resizing. -->
+            <Line Type="mask" Address="83 F8 06 0F 84 E0 06 00 00" Value="83F806909090909090" />
+            <!-- VA 0x00F57686; file 0x00F5B686. Always select the fixed internal-size calculation, bypassing the render-height override. -->
+            <Line Type="mask" Address="20 C1 80 F9 01 75 24 44 89 E0 C5 FA 10 4D C4" Value="20C180F901EB244489E0C5FA104DC4" />
+            <!-- VA 0x00F576B1; file 0x00F5B6B1. Write exact internal width/height and matching scale before all scene target resize calls. -->
+            <Line Type="mask" Address="C5 FA 10 55 C4 C5 FA 10 4D C0 C5 F2 59 C2 C5 F2 59 4D C8 C4 E3 79 0A C0 0A C4 E3 71 0A C9 0A C5 7A 2C E1 C5 F8 28 CA C5 7A 2C E8" Value="C745C0ABAA2A3F41C78760050000ABAA2A3F41BD000A000041BCA0050000C5FA104DC49090909090909090" />
+            <!-- VA 0x00F5794F; file 0x00F5B94F. Initialize exact scene dimensions while preserving the following allocation size. -->
+            <Line Type="mask" Address="C5 F9 6E 85 64 FF FF FF C4 E2 79 18 8B 60 05 00 00 BF 00 1C 00 00 C4 E3 79 22 85 60 FF FF FF 01 C5 F8 5B C0 C5 F0 59 C0 C5 FA 5B C0 C5 F8 13 83 64 05 00 00" Value="C78360050000ABAA2A3FC78364050000000A0000C78368050000A0050000BF001C00009090909090909090909090909090909090" />
+        </PatchList>
+    </Metadata>
+    <Metadata Title="Red Dead Redemption"
+              Name="1080p Internal Resolution (50.00%)"
+              Author="cainan__c"
+              PatchVer="3.0"
+              AppVer="mask"
+              AppElf="eboot.bin"
+              Note="Sets 3D Render Resolution to 1920x1080, Disables Dynamic Resolution Scaling"
+              isEnabled="false">
+        <PatchList>
+            <!-- VA 0x00F5660D; file 0x00F5A60D. Initialize the gameplay internal render scale. -->
+            <Line Type="mask" Address="C7 83 60 05 00 00 00 00 80 3F C5 FB 11 83 6C 05 00 00" Value="C783600500000000003FC5FB11836C050000" />
+            <!-- VA 0x00EF5188; file 0x00EF9188. Keep dynamic resolution disabled when applying FSR settings. -->
+            <Line Type="mask" Address="0F 94 81 80 05 00 00" Value="C6818005000000" />
+            <!-- VA 0x00EF51FE; file 0x00EF91FE. Keep dynamic resolution disabled when applying other scaling settings. -->
+            <Line Type="mask" Address="48 8D 05 A3 E7 7E 01 48 8B 00 88 88 80 05 00 00" Value="488B05A3E77E01C68080050000009090" />
+            <!-- VA 0x00F57B72; file 0x00F5BB72. Disable the command-line force-DRS override. -->
+            <Line Type="mask" Address="C6 83 80 05 00 00 01" Value="C6838005000000" />
+            <!-- VA 0x00F632AC; file 0x00F672AC. Retain the selected scale in the non-DRS fallback path. -->
+            <Line Type="mask" Address="C7 83 60 05 00 00 00 00 80 3F 88 83 81 05 00 00" Value="C783600500000000003F888381050000" />
+            <!-- VA 0x00F632C4; file 0x00F672C4. Compare the previous scale with the selected scale; avoid repeated resizing. -->
+            <Line Type="mask" Address="C5 F8 2E 05 2C 3F 50 00 75 06 0F 8B C4 03 00 00" Value="C5F82E836005000075060F8BC4030000" />
+            <!-- VA 0x00F6336B; file 0x00F6736B. Prevent the upscaler preset from replacing the selected scale on unchanged frames. -->
+            <Line Type="mask" Address="C5 FA 5E 82 A0 03 00 00 C5 FA 11 83 60 05 00 00" Value="C5FA5E82A00300009090909090909090" />
+            <!-- VA 0x00F633D2; file 0x00F673D2. Prevent the upscaler preset from replacing the selected scale before target resizing. -->
+            <Line Type="mask" Address="C5 FA 5E 80 A0 03 00 00 48 8D 05 37 9A C0 00 C5 FA 11 83 60 05 00 00" Value="C5FA5E80A0030000488D05379AC0009090909090909090" />
+            <!-- VA 0x00F62FAF; file 0x00F66FAF. Allow mode 6 to update internal dimensions instead of returning before resizing. -->
+            <Line Type="mask" Address="83 F8 06 0F 84 E0 06 00 00" Value="83F806909090909090" />
+            <!-- VA 0x00F57686; file 0x00F5B686. Always select the fixed internal-size calculation, bypassing the render-height override. -->
+            <Line Type="mask" Address="20 C1 80 F9 01 75 24 44 89 E0 C5 FA 10 4D C4" Value="20C180F901EB244489E0C5FA104DC4" />
+            <!-- VA 0x00F576B1; file 0x00F5B6B1. Write exact internal width/height and matching scale before all scene target resize calls. -->
+            <Line Type="mask" Address="C5 FA 10 55 C4 C5 FA 10 4D C0 C5 F2 59 C2 C5 F2 59 4D C8 C4 E3 79 0A C0 0A C4 E3 71 0A C9 0A C5 7A 2C E1 C5 F8 28 CA C5 7A 2C E8" Value="C745C00000003F41C787600500000000003F41BD8007000041BC38040000C5FA104DC49090909090909090" />
+            <!-- VA 0x00F5794F; file 0x00F5B94F. Initialize exact scene dimensions while preserving the following allocation size. -->
+            <Line Type="mask" Address="C5 F9 6E 85 64 FF FF FF C4 E2 79 18 8B 60 05 00 00 BF 00 1C 00 00 C4 E3 79 22 85 60 FF FF FF 01 C5 F8 5B C0 C5 F0 59 C0 C5 FA 5B C0 C5 F8 13 83 64 05 00 00" Value="C783600500000000003FC7836405000080070000C7836805000038040000BF001C00009090909090909090909090909090909090" />
+        </PatchList>
+    </Metadata>
+    <Metadata Title="Red Dead Redemption"
+              Name="900p Internal Resolution (41.67%)"
+              Author="cainan__c"
+              PatchVer="3.0"
+              AppVer="mask"
+              AppElf="eboot.bin"
+              Note="Sets 3D Render Resolution to 1600x900, Disables Dynamic Resolution Scaling"
+              isEnabled="false">
+        <PatchList>
+            <!-- VA 0x00F5660D; file 0x00F5A60D. Initialize the gameplay internal render scale. -->
+            <Line Type="mask" Address="C7 83 60 05 00 00 00 00 80 3F C5 FB 11 83 6C 05 00 00" Value="C783600500005555D53EC5FB11836C050000" />
+            <!-- VA 0x00EF5188; file 0x00EF9188. Keep dynamic resolution disabled when applying FSR settings. -->
+            <Line Type="mask" Address="0F 94 81 80 05 00 00" Value="C6818005000000" />
+            <!-- VA 0x00EF51FE; file 0x00EF91FE. Keep dynamic resolution disabled when applying other scaling settings. -->
+            <Line Type="mask" Address="48 8D 05 A3 E7 7E 01 48 8B 00 88 88 80 05 00 00" Value="488B05A3E77E01C68080050000009090" />
+            <!-- VA 0x00F57B72; file 0x00F5BB72. Disable the command-line force-DRS override. -->
+            <Line Type="mask" Address="C6 83 80 05 00 00 01" Value="C6838005000000" />
+            <!-- VA 0x00F632AC; file 0x00F672AC. Retain the selected scale in the non-DRS fallback path. -->
+            <Line Type="mask" Address="C7 83 60 05 00 00 00 00 80 3F 88 83 81 05 00 00" Value="C783600500005555D53E888381050000" />
+            <!-- VA 0x00F632C4; file 0x00F672C4. Compare the previous scale with the selected scale; avoid repeated resizing. -->
+            <Line Type="mask" Address="C5 F8 2E 05 2C 3F 50 00 75 06 0F 8B C4 03 00 00" Value="C5F82E836005000075060F8BC4030000" />
+            <!-- VA 0x00F6336B; file 0x00F6736B. Prevent the upscaler preset from replacing the selected scale on unchanged frames. -->
+            <Line Type="mask" Address="C5 FA 5E 82 A0 03 00 00 C5 FA 11 83 60 05 00 00" Value="C5FA5E82A00300009090909090909090" />
+            <!-- VA 0x00F633D2; file 0x00F673D2. Prevent the upscaler preset from replacing the selected scale before target resizing. -->
+            <Line Type="mask" Address="C5 FA 5E 80 A0 03 00 00 48 8D 05 37 9A C0 00 C5 FA 11 83 60 05 00 00" Value="C5FA5E80A0030000488D05379AC0009090909090909090" />
+            <!-- VA 0x00F62FAF; file 0x00F66FAF. Allow mode 6 to update internal dimensions instead of returning before resizing. -->
+            <Line Type="mask" Address="83 F8 06 0F 84 E0 06 00 00" Value="83F806909090909090" />
+            <!-- VA 0x00F57686; file 0x00F5B686. Always select the fixed internal-size calculation, bypassing the render-height override. -->
+            <Line Type="mask" Address="20 C1 80 F9 01 75 24 44 89 E0 C5 FA 10 4D C4" Value="20C180F901EB244489E0C5FA104DC4" />
+            <!-- VA 0x00F576B1; file 0x00F5B6B1. Write exact internal width/height and matching scale before all scene target resize calls. -->
+            <Line Type="mask" Address="C5 FA 10 55 C4 C5 FA 10 4D C0 C5 F2 59 C2 C5 F2 59 4D C8 C4 E3 79 0A C0 0A C4 E3 71 0A C9 0A C5 7A 2C E1 C5 F8 28 CA C5 7A 2C E8" Value="C745C05555D53E41C787600500005555D53E41BD4006000041BC84030000C5FA104DC49090909090909090" />
+            <!-- VA 0x00F5794F; file 0x00F5B94F. Initialize exact scene dimensions while preserving the following allocation size. -->
+            <Line Type="mask" Address="C5 F9 6E 85 64 FF FF FF C4 E2 79 18 8B 60 05 00 00 BF 00 1C 00 00 C4 E3 79 22 85 60 FF FF FF 01 C5 F8 5B C0 C5 F0 59 C0 C5 FA 5B C0 C5 F8 13 83 64 05 00 00" Value="C783600500005555D53EC7836405000040060000C7836805000084030000BF001C00009090909090909090909090909090909090" />
+        </PatchList>
+    </Metadata>
+    <Metadata Title="Red Dead Redemption"
+              Name="720p Internal Resolution (33.33%)"
+              Author="cainan__c"
+              PatchVer="3.0"
+              AppVer="mask"
+              AppElf="eboot.bin"
+              Note="Sets 3D Render Resolution to 1280x720, Disables Dynamic Resolution Scaling"
+              isEnabled="false">
+        <PatchList>
+            <!-- VA 0x00F5660D; file 0x00F5A60D. Initialize the gameplay internal render scale. -->
+            <Line Type="mask" Address="C7 83 60 05 00 00 00 00 80 3F C5 FB 11 83 6C 05 00 00" Value="C78360050000ABAAAA3EC5FB11836C050000" />
+            <!-- VA 0x00EF5188; file 0x00EF9188. Keep dynamic resolution disabled when applying FSR settings. -->
+            <Line Type="mask" Address="0F 94 81 80 05 00 00" Value="C6818005000000" />
+            <!-- VA 0x00EF51FE; file 0x00EF91FE. Keep dynamic resolution disabled when applying other scaling settings. -->
+            <Line Type="mask" Address="48 8D 05 A3 E7 7E 01 48 8B 00 88 88 80 05 00 00" Value="488B05A3E77E01C68080050000009090" />
+            <!-- VA 0x00F57B72; file 0x00F5BB72. Disable the command-line force-DRS override. -->
+            <Line Type="mask" Address="C6 83 80 05 00 00 01" Value="C6838005000000" />
+            <!-- VA 0x00F632AC; file 0x00F672AC. Retain the selected scale in the non-DRS fallback path. -->
+            <Line Type="mask" Address="C7 83 60 05 00 00 00 00 80 3F 88 83 81 05 00 00" Value="C78360050000ABAAAA3E888381050000" />
+            <!-- VA 0x00F632C4; file 0x00F672C4. Compare the previous scale with the selected scale; avoid repeated resizing. -->
+            <Line Type="mask" Address="C5 F8 2E 05 2C 3F 50 00 75 06 0F 8B C4 03 00 00" Value="C5F82E836005000075060F8BC4030000" />
+            <!-- VA 0x00F6336B; file 0x00F6736B. Prevent the upscaler preset from replacing the selected scale on unchanged frames. -->
+            <Line Type="mask" Address="C5 FA 5E 82 A0 03 00 00 C5 FA 11 83 60 05 00 00" Value="C5FA5E82A00300009090909090909090" />
+            <!-- VA 0x00F633D2; file 0x00F673D2. Prevent the upscaler preset from replacing the selected scale before target resizing. -->
+            <Line Type="mask" Address="C5 FA 5E 80 A0 03 00 00 48 8D 05 37 9A C0 00 C5 FA 11 83 60 05 00 00" Value="C5FA5E80A0030000488D05379AC0009090909090909090" />
+            <!-- VA 0x00F62FAF; file 0x00F66FAF. Allow mode 6 to update internal dimensions instead of returning before resizing. -->
+            <Line Type="mask" Address="83 F8 06 0F 84 E0 06 00 00" Value="83F806909090909090" />
+            <!-- VA 0x00F57686; file 0x00F5B686. Always select the fixed internal-size calculation, bypassing the render-height override. -->
+            <Line Type="mask" Address="20 C1 80 F9 01 75 24 44 89 E0 C5 FA 10 4D C4" Value="20C180F901EB244489E0C5FA104DC4" />
+            <!-- VA 0x00F576B1; file 0x00F5B6B1. Write exact internal width/height and matching scale before all scene target resize calls. -->
+            <Line Type="mask" Address="C5 FA 10 55 C4 C5 FA 10 4D C0 C5 F2 59 C2 C5 F2 59 4D C8 C4 E3 79 0A C0 0A C4 E3 71 0A C9 0A C5 7A 2C E1 C5 F8 28 CA C5 7A 2C E8" Value="C745C0ABAAAA3E41C78760050000ABAAAA3E41BD0005000041BCD0020000C5FA104DC49090909090909090" />
+            <!-- VA 0x00F5794F; file 0x00F5B94F. Initialize exact scene dimensions while preserving the following allocation size. -->
+            <Line Type="mask" Address="C5 F9 6E 85 64 FF FF FF C4 E2 79 18 8B 60 05 00 00 BF 00 1C 00 00 C4 E3 79 22 85 60 FF FF FF 01 C5 F8 5B C0 C5 F0 59 C0 C5 FA 5B C0 C5 F8 13 83 64 05 00 00" Value="C78360050000ABAAAA3EC7836405000000050000C78368050000D0020000BF001C00009090909090909090909090909090909090" />
+        </PatchList>
+    </Metadata>
+    <Metadata Title="Red Dead Redemption"
+              Name="Restore PC Graphics Menu"
+              Author="cainan__c"
+              PatchVer="1.0"
+              AppVer="mask"
+              AppElf="eboot.bin"
+              Note="Restores the Graphics tab in the Options menu. Some options may cause crashing or visual issues."
+              isEnabled="false">
+        <PatchList>
+            <!-- VA 0x00F1D11A; file 0x00F2111A. Pass false to the Graphics tab hide function. Existing tab lookup and null guard are retained. -->
+            <Line Type="mask"
+                  Address="31 F6 48 83 3D 21 34 7A 01 00 48 89 C7 40 0F 94 C6 E8 ED EA 1D FF"
+                  Value="31F648833D21347A01004889C731F69090E8EDEA1DFF" />
+        </PatchList>
+    </Metadata>
+</Patch>
