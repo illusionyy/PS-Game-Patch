@@ -2,6 +2,7 @@
 <Patch>
   <TitleID>
     <ID>CUSA02819</ID>
+    <ID>CUSA02902</ID>
   </TitleID>
   <Metadata AppElf="eboot.bin" AppVer="01.31" PatchVer="1.0" Author="Jao" Note="Changes the engine target from 30 FPS to 60 FPS" Name="60 FPS" Title="Tom Clancy's: Ghost Recon Wildlands">
     <PatchList>
