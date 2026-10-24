@@ -32,5 +32,17 @@
       <Line Type="bytes" Address="0x019b2091" Value="41 b9 00"/>
       <Line Type="bytes" Address="0x019afc56" Value="41 b9 00"/>
     </PatchList>
-  </Metadata>  
+  </Metadata>
+  <Metadata
+    Title="Detroit Become Human"
+    Name="Disable Error Dialogs (v1.08)"
+    Note="Skips system error dialogs opened by the game (e.g. NW-31201-7 when PSN is unreachable)"
+    Author="Baxinator,Claude"
+    PatchVer="1.0"
+    AppVer="01.08"
+    AppElf="eboot.bin">
+    <PatchList>
+      <Line Type="bytes" Address="0x00861e68" Value="eb56"/> <!-- call sceErrorDialogInitialize -> jmp to next queued error -->
+    </PatchList>
+  </Metadata>
 </Patch>
