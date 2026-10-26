@@ -56,4 +56,40 @@
             <Line Type="bytes" Address="0x0174dfe4" Value="e9970ae5fe"/>
         </PatchList>
     </Metadata>
+    <Metadata Title="Dark Souls Remastered"
+              Name="Motion Blur Off"
+              Note="Disables camera motion blur."
+              Author="Hobbergib"
+              PatchVer="1.0"
+              AppVer="01.03"
+              AppElf="eboot.bin">
+        <PatchList>
+            <Line Type="bytes" Address="0x00622019" Value="00"/>
+            <Line Type="bytes" Address="0x00622021" Value="00000000"/>
+            <Line Type="bytes" Address="0x0062202c" Value="00000000"/>
+        </PatchList>
+    </Metadata>
+    <Metadata Title="Dark Souls Remastered"
+              Name="Depth of Field Off"
+              Note="Disables depth of field."
+              Author="Hobbergib"
+              PatchVer="1.0"
+              AppVer="01.03"
+              AppElf="eboot.bin">
+        <PatchList>
+            <Line Type="bytes" Address="0x0062e03c" Value="c5e857d290"/>
+            <Line Type="bytes" Address="0x0062e047" Value="c5e057db90"/>
+        </PatchList>
+    </Metadata>
+    <Metadata Title="Dark Souls Remastered"
+              Name="Player Lantern Off"
+              Note="Removes the light around the player. Dark areas become much darker."
+              Author="Hobbergib"
+              PatchVer="1.0"
+              AppVer="01.03"
+              AppElf="eboot.bin">
+        <PatchList>
+            <Line Type="bytes" Address="0x01d3df80" Value="00000000"/>
+        </PatchList>
+    </Metadata>
 </Patch>
