@@ -12,4 +12,9 @@
       <Line Type="bytes" Address="0x006aa7e4" Value="909090909090"/>
     </PatchList>
   </Metadata>
+<Metadata Title="Call of Duty Black Ops" Name="monkeys bo1/bo2 fix for dlc" Note="Tested on PS4 Slim, firmware 12.00, GoldHEN v2.4. Requires installed map assets." Author="monkey, laika02" PatchVer="1.2" AppVer="01.09" AppElf="eboot.bin">
+<PatchList>
+<Line Type="bytes" Address="0x006aa264" Value="909090909090"/>
+</PatchList>
+</Metadata>
 </Patch>
