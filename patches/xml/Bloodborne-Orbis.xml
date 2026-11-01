@@ -1107,6 +1107,12 @@
             <Line Type="bytes" Address="0x01402d12" Value="e9ee900000"/>
         </PatchList>
     </Metadata>
+    <Metadata Title="Bloodborne" Name="L3 Sprint Jump" Note="While sprinting, press L3 to jump. Disables Circle jump. Credit N3R4i for original scripting work." Author="Uhnmeyker" PatchVer="1.0" AppVer="01.09" AppElf="eboot.bin">
+        <PatchList>
+            <Line Type="bytes" Address="0x0547fa00" Value="9c5041817e18100600000f859300000041817e28980000000f8585000000498b46204885c0747c81b8080b0000024d00b6757081b80c0b0000144e0098756481b8300b000002500032755881b8600b000001510032754c81b8840b0000024d00b67540498b46304885c0743783b80005000003752e81b8080500000000c3437522c780080500000080c343498b4620c780080b0000021a0032c7800c0b000002260550589d488b1d34413600e937ab98fb"/>
+            <Line Type="bytes" Address="0x00e0a5e1" Value="e91a5467049090"/>
+        </PatchList>
+    </Metadata>
     <Metadata Title="Bloodborne"
               Name="Restore Debug Dash"
               Note="Press L3 to activate/deactivate then hold L2 to increase or L1 to decrease your current altitude and R2 for noclip."
