@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+    <TitleID>
+        <ID>CUSA01623</ID>
+        <ID>CUSA01715</ID>
+    </TitleID>
+
+    <Metadata Title="God of War III Remastered" 
+              Name="3840x2160 (4K)" 
+              Note="Forces 3840x2160 rendering. Expands video arena to 2272 MiB and reduces general heap to 1888 MiB to prevent direct memory exhaustion. Native 4K output on PS5 backwards compatibility requires NeoEnabler." 
+              Author="cuesta4, kvicken" 
+              PatchVer="1.0" 
+              AppVer="01.02" 
+              AppElf="eboot.bin">
+        <PatchList>
+            <!-- 3840x2160 render targets and half-res buffers -->
+            <Line Type="bytes" Address="0x005f0c5b" Value="000f0000"/>
+            <Line Type="bytes" Address="0x005f0c63" Value="70080000"/>
+            <Line Type="bytes" Address="0x005f0c6c" Value="000f"/>
+            <Line Type="bytes" Address="0x005f0c73" Value="7008"/>
+            <Line Type="bytes" Address="0x005643e3" Value="70080000"/>
+            <Line Type="bytes" Address="0x005643f0" Value="000f0000"/>
+            <Line Type="bytes" Address="0x005ff889" Value="000f0000"/>
+            <Line Type="bytes" Address="0x005ff88f" Value="70080000"/>
+            <Line Type="bytes" Address="0x007c46b4" Value="000f0000"/>
+            <Line Type="bytes" Address="0x007c46b8" Value="70080000"/>
+            <Line Type="bytes" Address="0x0056bb72" Value="70080000"/>
+            <Line Type="bytes" Address="0x0060965d" Value="70080000"/>
+            <Line Type="bytes" Address="0x007f2a3c" Value="80070000"/>
+            <Line Type="bytes" Address="0x007f2a40" Value="38040000"/>
+
+            <!-- Video arena: 1280 MiB -> 2272 MiB (0x8e) -->
+            <Line Type="bytes" Address="0x007cd918" Value="0000008e"/>
+
+            <!-- General heap: 2816 MiB -> 1888 MiB (0x76) -->
+            <Line Type="bytes" Address="0x004000db" Value="00000076"/>
+            <Line Type="bytes" Address="0x00400115" Value="00000076"/>
+            <Line Type="bytes" Address="0x0040013c" Value="00000076"/>
+            <Line Type="bytes" Address="0x0040031a" Value="00000076"/>
+            <Line Type="bytes" Address="0x0040034f" Value="00000076"/>
+            <Line Type="bytes" Address="0x0040037a" Value="00000076"/>
+        </PatchList>
+    </Metadata>
+</Patch>
