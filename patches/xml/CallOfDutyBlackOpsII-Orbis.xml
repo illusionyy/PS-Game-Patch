@@ -17,4 +17,9 @@
 <Line Type="bytes" Address="0x007181e0" Value="b801000000c39090"/>
 </PatchList>
 </Metadata>
+<Metadata Title="Call of Duty Black Ops II" Name="DLC availability predicate (Multiplayer)" Note="Tested in Multiplayer. Requires installed multiplayer map assets." Author="monkey, laika02" PatchVer="1.2" AppVer="01.11" AppElf="codmp.elf">
+<PatchList>
+<Line Type="bytes" Address="0x007183a0" Value="b801000000c39090"/>
+</PatchList>
+</Metadata>
 </Patch>
