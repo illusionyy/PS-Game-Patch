@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <TitleID>
+    <ID>CUSA03200</ID>
+    <ID>CUSA03333</ID>
+  </TitleID>
+  <Metadata Title="SOMA" Name="60 FPS" Note="Forces a 60 Hz flip rate instead of 30 and defaults the refresh rate setting to 60." Author="Criminal" PatchVer="1.0" AppVer="01.10" AppElf="eboot.bin">
+    <PatchList>
+      <Line Type="bytes" Address="0x00b18a68" Value="eb" />
+      <Line Type="bytes" Address="0x00b1b011" Value="9090" />
+      <Line Type="bytes" Address="0x00b6436b" Value="3c" />
+    </PatchList>
+  </Metadata>
+</Patch>
