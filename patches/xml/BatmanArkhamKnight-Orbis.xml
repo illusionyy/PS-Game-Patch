@@ -9,7 +9,7 @@
               Name="60 FPS Unlock"
               Author="illusion"
               PatchVer="1.0"
-              AppVer="01.14"
+              AppVer="01.18"
               AppElf="eboot.bin">
         <PatchList>
             <Line Type="bytes" Address="0x00a12abe" Value="be00000000"/>
@@ -21,7 +21,7 @@
               Name="Resolution Patch (720p)"
               Author="illusion"
               PatchVer="1.0"
-              AppVer="01.14"
+              AppVer="01.18"
               AppElf="eboot.bin">
         <PatchList>
             <Line Type="bytes32" Address="0x02b04014" Value="0x00000500"/>
@@ -32,7 +32,7 @@
               Name="60 FPS Unlock"
               Author="illusion"
               PatchVer="1.0"
-              AppVer="01.15"
+              AppVer="01.18"
               AppElf="eboot.bin">
         <PatchList>
             <Line Type="bytes" Address="0x009fa57e" Value="be00000000"/>
@@ -44,7 +44,7 @@
               Name="Resolution Patch (720p)"
               Author="illusion"
               PatchVer="1.0"
-              AppVer="01.15"
+              AppVer="01.18"
               AppElf="eboot.bin">
         <PatchList>
             <Line Type="bytes32" Address="0x02b04014" Value="0x00000500"/>
