@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+    <TitleID>
+        <ID>CUSA56930</ID>
+    </TitleID>
+    <!--
+      Addresses use the standard GoldHEN base 0x00400000 (ELF vaddr + 0x400000).
+      Frame rate: enable at most ONE of the two "60 FPS" patches.
+      Resolution: enable at most ONE resolution patch (none = original 1080p).
+      One frame-rate patch and one resolution patch can be combined.
+    -->
+    <Metadata Title="Toy Story 3 Complete Edition"
+              Name="60 FPS"
+              Note="Unlocks the frame rate from 30 to 60 FPS. Game logic uses measured delta time, so game speed is unaffected. Tested on PS4 Pro only; minor frame drops in some areas."
+              Author="NaughtyCoffeeHamster"
+              PatchVer="1.0"
+              AppVer="01.02"
+              AppElf="eboot.bin">
+        <PatchList>
+            <!-- mov esi,2 -> mov esi,1 (argument to the engine's SetVSyncInterval) -->
+            <Line Type="bytes" Address="0x00400ae0" Value="be01000000"/>
+        </PatchList>
+    </Metadata>
+    <Metadata Title="Toy Story 3 Complete Edition"
+              Name="60 FPS + loading screen fix"
+              Note="Same as 60 FPS, plus the fixed loading screen animation step is changed from 1/30 s to 1/60 s so it does not run too fast. Use instead of the plain 60 FPS patch, not together with it. Briefly tested on PS4 Pro only; no crashes found."
+              Author="NaughtyCoffeeHamster"
+              PatchVer="1.0"
+              AppVer="01.02"
+              AppElf="eboot.bin">
+        <PatchList>
+            <!-- mov esi,2 -> mov esi,1 (argument to the engine's SetVSyncInterval) -->
+            <Line Type="bytes" Address="0x00400ae0" Value="be01000000"/>
+            <!-- vmovss xmm0,[1/30] -> vmovss xmm0,[1/60] (RIP-relative target 0x00b11100 -> 0x00b11180) -->
+            <Line Type="bytes" Address="0x008be4d1" Value="c5fa1005a72c2500"/>
+        </PatchList>
+    </Metadata>
+    <Metadata Title="Toy Story 3 Complete Edition"
+              Name="Resolution 2560x1440 (experimental)"
+              Note="Raises the hard-coded 1920x1080 resolution to 2560x1440. Can be combined with a 60 FPS patch. Briefly tested on PS4 Pro only: seemed fairly stable with 60 FPS. Not tested across the whole game or on base PS4."
+              Author="NaughtyCoffeeHamster"
+              PatchVer="1.0"
+              AppVer="01.02"
+              AppElf="eboot.bin">
+        <PatchList>
+            <!-- render setup: mov r12,0x43800000780 -> 0x5a000000a00 -->
+            <Line Type="bytes" Address="0x00650ea7" Value="000a0000a0050000"/>
+            <!-- display buffers: mov rax,0x43800000780 -> 0x5a000000a00 -->
+            <Line Type="bytes" Address="0x00652b51" Value="000a0000a0050000"/>
+            <!-- video config: mov rax,0x43800000780 -> 0x5a000000a00 -->
+            <Line Type="bytes" Address="0x008bd305" Value="000a0000a0050000"/>
+        </PatchList>
+    </Metadata>
+    <Metadata Title="Toy Story 3 Complete Edition"
+              Name="Resolution 3840x2160 (experimental)"
+              Note="Raises the hard-coded 1920x1080 resolution to 3840x2160 (native 4K). Can be combined with a 60 FPS patch. Briefly tested on PS4 Pro only: runs with 60 FPS but with more frame drops and higher temperatures than 1440p. Not tested across the whole game or on base PS4."
+              Author="NaughtyCoffeeHamster"
+              PatchVer="1.0"
+              AppVer="01.02"
+              AppElf="eboot.bin">
+        <PatchList>
+            <!-- render setup: mov r12,0x43800000780 -> 0x87000000f00 -->
+            <Line Type="bytes" Address="0x00650ea7" Value="000f000070080000"/>
+            <!-- display buffers: mov rax,0x43800000780 -> 0x87000000f00 -->
+            <Line Type="bytes" Address="0x00652b51" Value="000f000070080000"/>
+            <!-- video config: mov rax,0x43800000780 -> 0x87000000f00 -->
+            <Line Type="bytes" Address="0x008bd305" Value="000f000070080000"/>
+        </PatchList>
+    </Metadata>
+</Patch>
